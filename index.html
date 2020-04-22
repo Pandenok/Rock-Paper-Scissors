@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissors</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+    
+    function computerPlay() {
+        const options = ['ROCK', 'PAPER', 'SCISSORS'];
+        return options[Math.floor(Math.random() * options.length)];
+    }
+    
+    let computerScore = 0;
+    let playerScore = 0;
+ 
+    
+    function playRound() {
+        
+        const playerSelection = prompt('Please, choose: Rock, Paper or Scissors?');
+        const computerSelection = computerPlay();
+        let results;         
+
+        if (playerSelection.toUpperCase() == computerSelection) {
+            playerScore++;
+            computerScore++;
+            results = `You picked ${playerSelection.toUpperCase()} and Computer picked ${computerSelection}. 
+            ${playerSelection.toUpperCase()} can\'t beat ${computerSelection}.
+            It\'s a Draw! YOU: ${playerScore} COMPUTER: ${computerScore}`;
+        } else if ((playerSelection.toUpperCase() == 'ROCK' && computerSelection == 'SCISSORS') ||
+            (playerSelection.toUpperCase() == 'PAPER' && computerSelection == 'ROCK') ||
+            (playerSelection.toUpperCase() == 'SCISSORS' && computerSelection == 'PAPER')) {
+            playerScore++;
+            results = `You picked ${playerSelection.toUpperCase()} and Computer picked ${computerSelection}. 
+            ${playerSelection.toUpperCase()} beats ${computerSelection}.
+            You win this round! YOU: ${playerScore} COMPUTER: ${computerScore}`;
+        } else {
+            computerScore++;
+            results = `You picked ${playerSelection.toUpperCase()} and Computer picked ${computerSelection}. 
+            ${computerSelection} beats ${playerSelection.toUpperCase()}.
+            You lose this round! YOU: ${playerScore} COMPUTER: ${computerScore}`;
+        }
+        
+        alert(results);
+    }
+
+    function game() {
+
+        playRound();
+        alert('Round 2');
+        playRound();
+        alert('Round 3');
+        playRound();
+        alert('Round 4');
+        playRound();
+        alert('Round 5');
+        playRound();
+
+        if (playerScore > computerScore) {
+                alert (`You won the game! YOU ${playerScore} COMPUTER: ${computerScore}`);
+            } else if (playerScore < computerScore) {
+                alert (`Try again! The next time you\'ll be more lucky! YOU: ${playerScore} COMPUTER: ${computerScore}`);
+            } else {
+                alert (`It\'s a Draw! Play again! YOU: ${playerScore} COMPUTER: ${computerScore}`);
+        }       
+    }
+
+    game();
+    
+  </script>
+</body>
+</html>
